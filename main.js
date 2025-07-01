@@ -120,12 +120,14 @@ window.guardarTransmisor = function() {
 };
 
 btnProgramar.addEventListener("click", () => {
+  alert("Presione el botón del transmisor ahora...");
   set(ref(db, "/modoEscucha"), true);
 });
 
 onValue(ref(db, "/codigoCapturado"), (snapshot) => {
   const val = snapshot.val();
   if (val && val !== 0) {
+    alert("Código detectado: " + val);
     codigoDetectado = val;
     document.getElementById("codigo-detectado").textContent = val;
     formSection.style.display = "block";
