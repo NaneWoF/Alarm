@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Administrador WOF</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div class="container" id="loginSection">
+    <h2>Iniciar sesión</h2>
+    <input id="email" type="email" placeholder="Correo electrónico" />
+    <input id="password" type="password" placeholder="Contraseña" />
+    <button id="loginButton">Entrar</button>
+  </div>
+
+  <div class="container" id="mainSection" style="display: none;">
+    <h1>Panel Administrador WOF</h1>
+    <button id="btnProgramar">Programar nuevo transmisor</button>
+    <table>
+      <thead>
+        <tr><th>Nombre</th><th>Dirección</th><th>ID Web</th><th>Acciones</th></tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <section id="formSection" style="display: none;">
+      <h3>Nuevo transmisor</h3>
+      <p><strong>Código detectado:</strong> <span id="codigo-detectado"></span></p>
+      <input id="input-nombre" placeholder="Nombre" />
+      <input id="input-direccion" placeholder="Dirección" />
+      <input id="input-idweb" placeholder="ID Web" />
+      <button onclick="guardarTransmisor()">Guardar</button>
+    </section>
+  </div>
+</body>
+</html>
