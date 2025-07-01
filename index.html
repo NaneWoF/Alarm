@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel WOF Technology</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div class="container" id="login-container">
+    <h2>Acceso al Panel</h2>
+    <input type="email" id="email" placeholder="Correo">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Ingresar</button>
+  </div>
+
+  <div class="container" id="panel-container" style="display:none">
+    <h1>Panel Remoto WOF</h1>
+    <div class="status-box">
+      <p>Estado de salida: <strong id="estado">Cargando...</strong></p>
+      <p>Último usuario: <span id="usuario">...</span></p>
+      <button onclick="verificarIDWeb()">Activar / Desactivar</button>
+    </div>
+    <footer><p>© 2025 WOF Technology</p></footer>
+  </div>
+</body>
+</html>
