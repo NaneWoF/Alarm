@@ -29,6 +29,10 @@ const formSection = document.getElementById("formSection");
 let codigoDetectado = null;
 let editarPos = null;
 
+// CONFIGURA TU ID DE DISPOSITIVO AQUÍ
+const deviceID = "dispositivo01";
+const basePath = `/dispositivos/${deviceID}`;
+
 loginButton.addEventListener("click", () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
@@ -48,7 +52,7 @@ onAuthStateChanged(auth, user => {
 });
 
 function cargarTransmisores() {
-  const transmisoresRef = ref(db, "/dispositivos/dispositivo01/transmisores");
+  const transmisoresRef = ref(db, `${basePath}/transmisores`);
   get(transmisoresRef).then(snapshot => {
     tbody.innerHTML = "";
     if (snapshot.exists()) {
@@ -71,7 +75,7 @@ function cargarTransmisores() {
 }
 
 window.editarTransmisor = function(pos) {
-  const transmisoresRef = ref(db, "/dispositivos/dispositivo01/transmisores");
+  const transmisoresRef = ref(db, `${basePath}/transmisores`);
   get(transmisoresRef).then(snapshot => {
     if (!snapshot.exists()) return alert("Transmisor no encontrado");
     const arr = snapshot.val();
@@ -87,7 +91,7 @@ window.editarTransmisor = function(pos) {
 };
 
 window.borrarTransmisor = function(pos) {
-  const transmisoresRef = ref(db, "/dispositivos/dispositivo01/transmisores");
+  const transmisoresRef = ref(db, `${basePath}/transmisores`);
   get(transmisoresRef).then(snapshot => {
     let arr = snapshot.val();
     arr.splice(pos, 1);
@@ -104,7 +108,7 @@ window.guardarTransmisor = function() {
     return alert("Completa todos los campos y espera la detección del código RF.");
   }
 
-  const transmisoresRef = ref(db, "/dispositivos/dispositivo01/transmisores");
+  const transmisoresRef = ref(db, `${basePath}/transmisores`);
   get(transmisoresRef).then(snapshot => {
     let arr = snapshot.exists() ? snapshot.val() : [];
     const datos = { codigo: codigoDetectado, nombre, direccion, idWeb };
@@ -121,10 +125,10 @@ window.guardarTransmisor = function() {
 
 btnProgramar.addEventListener("click", () => {
   alert("Presione el botón del transmisor ahora...");
-  set(ref(db, "/dispositivos/dispositivo01/modoEscucha"), true);
+  set(ref(db, `${basePath}/modoEscucha`), true);
 });
 
-onValue(ref(db, "/dispositivos/dispositivo01/codigoCapturado"), (snapshot) => {
+onValue(ref(db, `${basePath}/codigoCapturado`), (snapshot) => {
   const val = snapshot.val();
   if (val && val !== 0) {
     alert("Código detectado: " + val);
